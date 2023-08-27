@@ -1,0 +1,551 @@
+#!/bin/bash
+
+function ..() {
+    cd ..
+}
+
+function ...() {
+    cd ../../
+}
+
+function ....() {
+    cd ../../../
+}
+
+function .....() {
+    cd ../../../../
+}
+
+function all() {
+	git add --all && git commit -a
+}
+
+function activate() {
+  pushd ~/virtualenvs/py27 > /dev/null
+  . bin/activate
+  export VENV=S1="`basename \"$VIRTUAL_ENV\"`"
+  . ~/.bashrc
+  export PS1="'`echo $PS1`'"
+  echo $PS1
+  popd > /dev/null
+}
+
+function app() {
+    ctx app
+}
+
+function b() {
+    yarn run all
+}
+
+function bfg() {
+    JAR=bfg-1.13.0.jar
+    java -jar ${ENVIRONMENT}/bin/${JAR} $*
+}
+
+function bin() {
+	cd ${WORKSPACE}/${COMPANY}/${CONTEXT}/bin
+}
+
+function build() {
+	SRC=${WORKSPACE}/${COMPANY}/${CONTEXT}/build.sh
+	if [ -f ${SRC} ]; then
+		. ${SRC}
+	else
+		printf "No build.sh script for this module\n"
+	fi
+}
+
+function c() {
+	cd ${WORKSPACE}/${COMPANY}/${CONTEXT}
+}
+
+function clear() {
+    printf "\033c"
+}
+
+function cls() {
+	clear
+}
+
+function colors() {
+    for i in {0..255}; do
+        printf "\x1b[38;5;${i}mcolour${i}\x1b[0m\n"
+    done
+}
+
+function command_exists() {
+	command -v $1 >/dev/null 2>&1 || { echo >&2 "$1 required but missing."; return 1; }
+}
+
+function conf() {
+	cd ${WORKSPACE}/${COMPANY}/${CONTEXT}/conf
+}
+
+function ctx() {
+    export APP=${1:-devops}
+    export CONTEXT=${PROJECT}/${APP}
+    # . ~/.zshrc
+    cd ${WORKSPACE}/${COMPANY}/${CONTEXT}
+}
+
+function data() {
+	cd ${WORKSPACE}/${COMPANY}/${CONTEXT}/data
+}
+
+function datastore() {
+    gcloud beta emulators datastore start --no-legacy
+}
+
+function db() {
+	cd ${WORKSPACE}/${COMPANY}/${CONTEXT}/db
+}
+
+function ddl() {
+	cd ${WORKSPACE}/${COMPANY}/${CONTEXT}/db/ddl
+}
+
+function deltree() {
+	/bin/rm -rf
+}
+
+function deploy() {
+    VERSION=`version`
+
+    if [ $(git tag -l "${VERSION}") ]; then
+        echo "Version tag ${VERSION} already exists in repo"
+    else
+        git tag ${VERSION}
+        git push origin ${VERSION}
+        git push --follow-tags
+    fi
+}
+
+function dev() {
+	if command_exists docker; then
+		docker exec -it satchel_development /bin/bash
+	fi
+}
+
+function devops() {
+    ctx devops
+}
+
+function dir() {
+    /bin/ls -aAxpl
+}
+
+function docs() {
+	cd ${WORKSPACE}/${COMPANY}/${CONTEXT}/devops/docs
+}
+
+function e() {
+    cd ${ENVIRONMENT}
+}
+
+function emacs-compile() {
+	if command_exists emacs; then
+        pushd ~/.emacs.d
+		emacs -Q -L . -L ./3rd-party/ -batch -f batch-byte-compile
+        popd
+	fi
+}
+
+function env() {
+	/usr/bin/env | sort
+}
+
+function erase() {
+	rm $*
+}
+
+function etc() {
+	conf
+}
+
+function f() {
+    # The parameters on the command line must be surrounded by ''
+    # $1 - file wildcard
+    # $2 - the string to grep for in each file
+    find * -name "${1}" -exec grep -ln "${2}" {} \;
+}
+
+function fix_yarn_globals() {
+    rm -f ${NODE_MODULES}/bin/
+    ln -f -s ~/.config/yarn/global/node_modules/.bin/* ${NODE_MODULES}/bin/
+}
+
+function frameworkpython() {
+    if [[ ! -z "$VIRTUAL_ENV" ]]; then
+        PYTHONHOME=$VIRTUAL_ENV /usr/local/bin/python "$@"
+    else
+        /usr/local/bin/python "$@"
+    fi
+}
+
+function gadgets() {
+	cd ${WORKSPACE}/${COMPANY}/oss/gadgets
+}
+
+function h() {
+	history
+}
+
+function home() {
+	cd ~/
+}
+
+function j() {
+	jobs -l
+}
+
+function l() {
+    /bin/ls -axpl ${COLOR} $*
+}
+
+
+function lib() {
+	cd ${WORKSPACE}/${COMPANY}/${CONTEXT}/lib
+}
+
+function ll() {
+    unalias ll &> /dev/null
+    ls -aAxpl $*
+}
+
+function lll() {
+    /bin/ls -laAtrc ${COLOR} $*
+}
+
+function loc() {
+    EXCLUDE_DIR=node_modules,coverage,dist,.git
+    cloc --exclude-dir=${EXCLUDE_DIR} ${1:-.}
+}
+
+function md() {
+	/bin/mkdir $*
+}
+
+function more() {
+	/usr/bin/less -R
+}
+
+function myps() {
+	ps -fu `/usr/bin/whoami`
+}
+
+function ndb() {
+	node --inspect --debug-brk ./node_modules/ava/profile.js $*
+}
+
+function now() {
+	date +"%T"
+}
+
+function npms() {
+	npm --silent $*
+}
+
+function oss() {
+	cd ${WORKSPACE}/${COMPANY}/oss
+}
+
+function p() {
+	cd ${WORKSPACE}/${COMPANY}/${CONTEXT}
+}
+
+function patch() {
+    # Creates a new patch for an NPM project.  Must contain a package.json file
+    # for this command to work.
+
+    if [ -f package.json ]; then
+        VERSION=$(npm --no-git-tag-version version patch)
+        echo "Creating new patch version: ${VERSION}"
+    else
+        echo "Invalid project, no package.json file in directory"
+    fi
+}
+
+function path() {
+	echo \"${PATH}\" | tr ':' '\n'
+}
+
+function pg() {
+	case "$1" in
+		startup)
+			pg_ctl -D /usr/local/var/postgres -l /var/log/postgres/logfile start
+			;;
+
+		shutdown)
+			kill -TERM `head -1 /usr/local/var/postgres/postmaster.pid`
+			;;
+
+		*)
+			printf "Usage: pg {startup|shutdown}\n"
+	esac
+}
+
+function pgs() {
+	#
+	# Connects to a postgres database instance.  It takes two parameters
+	# $1 = MODE: {user|debug|admin}
+	# $2 = ENV: {dev|test|prod}
+	#
+
+	MODE=$1
+	ENV=$2
+
+	case "$ENV" in
+	dev)
+		printf "dev\n"
+		;;
+
+	test)
+		printf "test\n"
+		;;
+
+	prod)
+		printf "prod\n"
+		;;
+	esac
+}
+
+function ports() {
+	netstat -tulanp
+}
+
+function ppath() {
+	echo \"${PYTHONPATH}\" | tr ':' '\n'
+}
+
+function publish() {
+	deploy
+}
+
+# function pushd() {
+#     command pushd "$@" > /dev/null
+# }
+
+# function popd() {
+#     command popd "$@" > /dev/null
+# }
+
+function prj() {
+    export PROJECT=${1:-scriblet}
+    unset CONTEXT
+    unset DEVOPS
+    . ~/.bash_profile
+}
+
+function pysite() {
+	echo `python -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())"`
+}
+
+function rat() {
+    clear && yarn run build && yarn run test
+}
+
+function rd() {
+	/bin/rmdir
+}
+
+function redis() {
+	case "$1" in
+		start)
+			/usr/local/sbin/redis-server /etc/redis/redis.conf
+			;;
+
+		stop)
+			/usr/local/sbin/redis-cli -h 127.0.0.1 -p 6379 shutdown
+			;;
+
+		dev)
+			/usr/local/sbin/redis-cli -h 127.0.0.1 -p 6379
+			;;
+
+		test)
+			/usr/local/sbin/redis-cli -h 192.168.1.42 -p 6379
+			;;
+
+		*)
+			printf "Usage: redis {start|stop|dev|test}\n"
+	esac
+}
+
+function rm-aite() {
+    ~/bin/rm-aite.sh $*
+}
+
+function rm-ite() {
+    ~/bin/rm-ite.sh $*
+}
+
+function rmelc() {
+	find * -name "*.elc" -exec rm -rf {} \; > /dev/null
+}
+
+function rmpyc() {
+    find * \( -name "*.pyc" -o -name "__pycache__" \) -exec rm -rf {} \; > /dev/null
+}
+
+function showpath() {
+	echo ${PATH} | tr ':' '\n'
+}
+
+function src() {
+	${WORKSPACE}/${COMPANY}/${CONTEXT}/src
+}
+
+function status-repos() {
+	#
+	# Scans all of the directories in the workspace.  If a directory
+	# contains a git repo, then `git pull` is performed to get the
+	# latest version of cod.
+	#
+
+	for directory in */ ; do
+		pushd ${directory} > /dev/null
+
+		if [ -d .git ]; then
+    		leader "Processing Directory: ${directory}"
+    		git status
+		else
+    		printf "\nSkipping Directory: %s\n" $directory
+		fi
+
+		popd > /dev/null
+	done
+}
+
+function syspath() {
+    echo "$(python --version) ($(which python))"
+    echo `python -c "import sys; print(' '.join(sys.path))"` | tr ' ' '\n'
+}
+
+function t() {
+	#
+	# Opens custom tmux terminal window configuration.  This sets
+	# at least 3 windows for configuration:
+	# - bash control (basic) with a three window setup
+	#
+	# - production
+	# - buildhaus server
+	#
+	# A fourth optional type is created named "app" if a command
+	# line option "app" is given.  This will open a three vertical
+	# window setup that contains the auto watch windows for code
+	# changes.
+	#
+
+    SESSION=main
+
+	[[ -d ${WORKSPACE} ]] && cd ${WORKSPACE}
+
+	tmux -2l new-session -n 'control' -s "${SESSION}" -d zsh -l
+    tmux -2l set-option history-limit 10000
+	tmux -2l split-window -h
+	tmux -2l select-pane -t 1
+	tmux -2l split-window -v
+	tmux -2l select-pane -R
+	tmux -2l new-window -n 'buildhaus' ssh buildhaus
+	tmux -2l split-window -h ssh buildhaus
+	tmux -2l select-pane -t 0
+	tmux -2l new-window -n 'production'
+	tmux -2l split-window -h
+	tmux -2l select-pane -t 0
+
+	pushd ${COMPANY}/${PROJECT}/app
+	tmux -2l new-window -n 'app'
+	tmux -2l split-window -h
+	tmux -2l split-window -h
+	tmux -2l select-pane -t 0
+	tmux -2l split-window -v
+	tmux -2l select-pane -t 0
+	popd
+
+	tmux -2l select-window -t 'control'
+    tmux -2l attach-session -t "${SESSION}"
+}
+
+function t2() {
+    SESSION=laptop
+
+	[[ -d ${WORKSPACE} ]] && cd ${WORKSPACE}
+
+	tmux -2l new-session -n 'control' -s "${SESSION}" -d zsh -l
+    tmux -2l set-option history-limit 10000
+	tmux -2l split-window -h
+    tmux -2l attach-session -t "${SESSION}"
+}
+
+function tags() {
+	build-ctags.sh
+}
+
+function todo() {
+	todo.sh
+}
+
+function tomcat() {
+	cd ${CATALINA_HOME}
+}
+
+function tree() {
+	find . -type d -print | sed -e 's;[^/]*/;|____;g;s;____|;    |;g'
+}
+
+function update-repos() {
+	#
+	# Scans all of the directories in the workspace.  If a directory
+	# contains a git repo, then `git pull` is performed to get the
+	# latest version of cod.
+	#
+
+	for directory in */ ; do
+		pushd ${directory} > /dev/null
+
+		if [ -d .git ]; then
+    		leader "Processing Directory: ${directory}"
+    		git pull
+		else
+    		printf "\nSkipping Directory: %s\n" $directory
+		fi
+
+		popd > /dev/null
+	done
+}
+
+function version() {
+    # Retrieves the current version number from the package.json file in a
+    # project if the package.json exists
+    if [ -f package.json ]; then
+        echo v`cat package.json \
+                | grep version \
+                | head -1 \
+                | awk -F: '{ print $2 }' \
+                | sed 's/[",]//g' \
+                | tr -d '[[:space:]]'`
+    else
+        echo "Invalid project, no package.json file in directory"
+    fi
+}
+
+function vi() {
+    /usr/bin/vim $*
+}
+
+function w() {
+	cd ${WORKSPACE}
+}
+
+function webup() {
+	ps -ef | grep httpd | grep -v grep
+}
+
+function www() {
+    ctx www
+}
+
+function xterm() {
+	/usr/bin/xterm -fg white -bg black -fn fixed -geometry 120x50+0 +sb
+}
