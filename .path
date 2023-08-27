@@ -3,6 +3,7 @@
 export BASEPATH=.
 export BASEPATH=${BASEPATH}:${NODE_MODULES}/bin
 export BASEPATH=${BASEPATH}:./node_modules/.bin
+export BASEPATH=${BASEPATH}:/usr/local/share/npm-global/bin
 export BASEPATH=${BASEPATH}:/usr/local/sbin
 export BASEPATH=${BASEPATH}:/usr/local/bin
 export BASEPATH=${BASEPATH}:/usr/bin
