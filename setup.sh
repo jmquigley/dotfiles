@@ -17,6 +17,7 @@ done < ${HOME}/conf/startup.list
 
 if [ ! -d ${HOME}/bin ]; then
     ln -vs ./bin ${HOME}/bin
+    chmod -R 755 ./bin
 fi
 
 if [ ! -d ${HOME}/.vim ]; then
