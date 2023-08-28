@@ -1,2 +1,1 @@
-# dotfiles
-Development startup files
+Holds the startup files for the development environment

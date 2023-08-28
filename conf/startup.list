@@ -1,0 +1,15 @@
+~/ .bash_login
+~/ .bash_logout
+~/ .bash_profile
+~/ .bashrc
+~/ .ctags
+~/ .functions
+~/ .gdbinit
+~/ .inputrc
+~/ .path
+~/ .tmux.conf
+~/ .vimrc
+~/ .zlogin
+~/ .zlogout
+~/ .zshenv
+~/ .zshrc
