@@ -58,5 +58,6 @@
 				"GitHub.codespaces"
 			]
 		}
-	}
+	},
+	"postStartCommand": "bash .devcontainer/post-start.sh"
 }
