@@ -1,4 +1,4 @@
-FROM  mcr.microsoft.com/devcontainers/miniconda:latest
+FROM  mcr.microsoft.com/devcontainers/ubuntu:latest
 
 RUN apt-get update && apt-get install -y software-properties-common
 RUN apt-get update && apt-get install -y tmux curl wget git vim \
