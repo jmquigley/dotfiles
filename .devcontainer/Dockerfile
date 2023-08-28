@@ -1,4 +1,4 @@
-FROM  mcr.microsoft.com/devcontainers/ubuntu:latest
+FROM  mcr.microsoft.com/devcontainers/base:jammy
 
 RUN apt-get update && apt-get install -y software-properties-common
 RUN apt-get update && apt-get install -y tmux curl wget git vim \
