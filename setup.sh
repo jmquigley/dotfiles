@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
   
 #
-# Linking the startup environment
+# A dotfile configuration for all development environments.  This
+# script is used to link the startup environment
 #
   
 printf "Linking startup environment from '%s'\n" ${HOME}
