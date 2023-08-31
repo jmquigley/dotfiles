@@ -42,11 +42,11 @@ DIR_WO_STICKY=Ex
 [ -f ~/.env ] && . ~/.env
 [ -f ~/.functions ] && . ~/.functions
 
-if command -v pyenv 1>/dev/null 2>&1; then
-    export VIRTUAL_ENV_DISABLE_PROMPT=1
-    eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
-fi
+# if command -v pyenv 1>/dev/null 2>&1; then
+#     export VIRTUAL_ENV_DISABLE_PROMPT=1
+#     eval "$(pyenv init -)"
+#     eval "$(pyenv virtualenv-init -)"
+# fi
 
 [ -s "$NVM_HOME/nvm.sh" ] && \. "$NVM_HOME/nvm.sh"  # This loads nvm
 [ -s "$NVM_HOME/bash_completion" ] && \. "$NVM_HOME/bash_completion"  # This loads nvm bash_completion
