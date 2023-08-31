@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH="/home/jmquigley/.oh-my-zsh"
+export ZSH="/root/.oh-my-zsh"
 
 ZSH_THEME="agnoster"
 CASE_SENSITIVE="true"
@@ -48,24 +48,5 @@ if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv virtualenv-init -)"
 fi
 
-if [ -f "${GOOGLE_SDK}/path.zsh.inc" ]; then source "${GOOGLE_SDK}/path.zsh.inc"; fi
-if [ -f "${GOOGLE_SDK}/completion.zsh.inc" ]; then source "${GOOGLE_SDK}/completion.zsh.inc"; fi
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/jmquigley/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/jmquigley/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/jmquigley/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/jmquigley/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
+[ -s "$NVM_HOME/nvm.sh" ] && \. "$NVM_HOME/nvm.sh"  # This loads nvm
+[ -s "$NVM_HOME/bash_completion" ] && \. "$NVM_HOME/bash_completion"  # This loads nvm bash_completion

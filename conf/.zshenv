@@ -18,6 +18,7 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export NODE_MODULES=`realpath ~/.node_modules`
 export NODE_OPTIONS=--max-old-space-size=8192
+export NVM_HOME=`realpath ~/.nvm`
 export OPER=/usr/local/oper
 export PNPM_HOME=`realpath ~/.local/share/pnpm`
 export PYENV_ROOT=`realpath ~/.pyenv`
