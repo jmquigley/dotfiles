@@ -12,7 +12,7 @@ while read LINE; do
     read -ra ARR <<< "$LINE"
     SRC="$(echo -e "${PWD}/conf/${ARR[1]}" | tr -d '[:space:]')"
     DST="$(echo -e "${ARR[0]}${ARR[1]}" | tr -d '[:space:]')"
- 
+
     [ -f ${SRC} ] && eval "ln -fvs ${SRC} ${DST}"
 done < ./conf/startup.list
 
@@ -24,5 +24,9 @@ fi
 if [ ! -d ${HOME}/.vim ]; then
     ln -vs ${PWD}/.vim ${HOME}/.vim
 fi
+
+# setup conda environment
+# . ~/.bashrc
+conda env create -f ${PWD}/conf/conda-environment.yml
 
 printf "\n"
