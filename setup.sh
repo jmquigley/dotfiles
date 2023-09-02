@@ -35,7 +35,7 @@ if [ -d ~/.oh-my-zsh ]; then
 fi
 
 # Setup custom less command
-sh ${PWD}/conf/less.sh
+sh ${PWD}/bin/build-less.sh
 
 # setup conda environment
 . ~/.bashrc
