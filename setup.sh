@@ -7,6 +7,9 @@
 
 printf "Linking startup environment from '%s'\n" ${HOME}
 
+# Retrieve the powerlevel theme
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
 while read LINE; do
     IFS=' '
     read -ra ARR <<< "$LINE"

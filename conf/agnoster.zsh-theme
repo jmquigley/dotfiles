@@ -265,5 +265,5 @@ build_prompt() {
 }
 RPROMPT='${elapsed} ms ($(date +"%Y-%m-%d@%T"))'
 
-PROMPT='╭─%F{black}%K{#d7af00} nvm:$(nvm_prompt_info) %k%f%{%f%b%k%}%K{#808000} ${APP} %k$(build_prompt)${return_status}
+PROMPT='╭─%F{black}%K{#d7af00} nvm:$(nvm_prompt_info) %k%f%{%f%b%k%}$(build_prompt)${return_status}
 ╰─➤ '

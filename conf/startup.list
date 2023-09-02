@@ -6,6 +6,7 @@
 ~/ .functions
 ~/ .gdbinit
 ~/ .inputrc
+~/ .p10k.zsh
 ~/ .path
 ~/ .tmux.conf
 ~/ .vimrc
