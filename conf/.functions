@@ -241,6 +241,10 @@ function path() {
 	echo \"${PATH}\" | tr ':' '\n'
 }
 
+function pkg() {
+	cd ${WORKSPACE}/${PROJECT}/packages
+}
+
 function pg() {
 	case "$1" in
 		startup)
