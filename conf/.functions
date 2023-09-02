@@ -20,16 +20,6 @@ function all() {
 	git add --all && git commit -a
 }
 
-function activate() {
-  pushd ~/virtualenvs/py27 > /dev/null
-  . bin/activate
-  export VENV=S1="`basename \"$VIRTUAL_ENV\"`"
-  . ~/.bashrc
-  export PS1="'`echo $PS1`'"
-  echo $PS1
-  popd > /dev/null
-}
-
 function app() {
     ctx app
 }
@@ -44,11 +34,11 @@ function bfg() {
 }
 
 function bin() {
-	cd ${WORKSPACE}/${COMPANY}/${CONTEXT}/bin
+	cd ${WORKSPACE}/${PROJECT}/bin
 }
 
 function build() {
-	SRC=${WORKSPACE}/${COMPANY}/${CONTEXT}/build.sh
+	SRC=${WORKSPACE}/${PROJECT}/build.sh
 	if [ -f ${SRC} ]; then
 		. ${SRC}
 	else
@@ -57,7 +47,7 @@ function build() {
 }
 
 function c() {
-	cd ${WORKSPACE}/${COMPANY}/${CONTEXT}
+	cd ${WORKSPACE}/${PROJECT}
 }
 
 function clear() {
@@ -79,18 +69,11 @@ function command_exists() {
 }
 
 function conf() {
-	cd ${WORKSPACE}/${COMPANY}/${CONTEXT}/conf
-}
-
-function ctx() {
-    export APP=${1:-devops}
-    export CONTEXT=${PROJECT}/${APP}
-    # . ~/.zshrc
-    cd ${WORKSPACE}/${COMPANY}/${CONTEXT}
+	cd ${WORKSPACE}/${PROJECT}/conf
 }
 
 function data() {
-	cd ${WORKSPACE}/${COMPANY}/${CONTEXT}/data
+	cd ${WORKSPACE}/${PROJECT}/data
 }
 
 function datastore() {
@@ -98,11 +81,11 @@ function datastore() {
 }
 
 function db() {
-	cd ${WORKSPACE}/${COMPANY}/${CONTEXT}/db
+	cd ${WORKSPACE}/${PROJECT}/db
 }
 
 function ddl() {
-	cd ${WORKSPACE}/${COMPANY}/${CONTEXT}/db/ddl
+	cd ${WORKSPACE}/${PROJECT}/db/ddl
 }
 
 function deltree() {
@@ -123,12 +106,8 @@ function deploy() {
 
 function dev() {
 	if command_exists docker; then
-		docker exec -it satchel_development /bin/bash
+		docker exec -it ${PROJECT}_devcontainer /bin/bash
 	fi
-}
-
-function devops() {
-    ctx devops
 }
 
 function dir() {
@@ -136,7 +115,7 @@ function dir() {
 }
 
 function docs() {
-	cd ${WORKSPACE}/${COMPANY}/${CONTEXT}/devops/docs
+	cd ${WORKSPACE}/${PROJECT}/docs
 }
 
 function e() {
@@ -183,10 +162,6 @@ function frameworkpython() {
     fi
 }
 
-function gadgets() {
-	cd ${WORKSPACE}/${COMPANY}/oss/gadgets
-}
-
 function h() {
 	history
 }
@@ -205,7 +180,7 @@ function l() {
 
 
 function lib() {
-	cd ${WORKSPACE}/${COMPANY}/${CONTEXT}/lib
+	cd ${WORKSPACE}/${PROJECT}/lib
 }
 
 function ll() {
@@ -234,10 +209,6 @@ function myps() {
 	ps -fu `/usr/bin/whoami`
 }
 
-function ndb() {
-	node --inspect --debug-brk ./node_modules/ava/profile.js $*
-}
-
 function now() {
 	date +"%T"
 }
@@ -247,11 +218,11 @@ function npms() {
 }
 
 function oss() {
-	cd ${WORKSPACE}/${COMPANY}/oss
+	cd ${WORKSPACE}/oss
 }
 
 function p() {
-	cd ${WORKSPACE}/${COMPANY}/${CONTEXT}
+	cd ${WORKSPACE}/${PROJECT}
 }
 
 function patch() {
@@ -330,19 +301,12 @@ function publish() {
 #     command popd "$@" > /dev/null
 # }
 
-function prj() {
-    export PROJECT=${1:-scriblet}
-    unset CONTEXT
-    unset DEVOPS
-    . ~/.bash_profile
-}
-
 function pysite() {
 	echo `python -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())"`
 }
 
 function rat() {
-    clear && yarn run build && yarn run test
+    clear && pnpm run build && pnpm run test
 }
 
 function rd() {
@@ -372,14 +336,6 @@ function redis() {
 	esac
 }
 
-function rm-aite() {
-    ~/bin/rm-aite.sh $*
-}
-
-function rm-ite() {
-    ~/bin/rm-ite.sh $*
-}
-
 function rmelc() {
 	find * -name "*.elc" -exec rm -rf {} \; > /dev/null
 }
@@ -393,7 +349,7 @@ function showpath() {
 }
 
 function src() {
-	${WORKSPACE}/${COMPANY}/${CONTEXT}/src
+	${WORKSPACE}/${PROJECTS}/src
 }
 
 function status-repos() {
@@ -540,10 +496,6 @@ function w() {
 
 function webup() {
 	ps -ef | grep httpd | grep -v grep
-}
-
-function www() {
-    ctx www
 }
 
 function xterm() {

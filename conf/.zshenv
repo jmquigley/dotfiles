@@ -1,13 +1,15 @@
+export WORKSPACE=${WORKSPACE:-/workspace}
+
 export APPZ=/usr/local/apps
 export ARCHFLAGS="-arch x86_64"
 export CATALINA_HOME=/usr/local/share/tomcat
-export COMPANY=deltarfasteners
+export COMPANY=${COMPANY:-thirteensystems}
 export CONDA_HOME=/opt/conda
-export PROJECT=${PROJECT:-mes}
-export APP=${APP:-devops}
+export PROJECT=${PROJECT:-daedalus}
 export CONTEXT=${CONTEXT:-${COMPANY}/${PROJECT}}
 export EDITOR=vim
 export ENV=`uname`
+export ENVIRONMENT=${ENVIRONMENT:-${WORKSPACE}/dotfiles}
 export FORCE_COLOR=1
 export GIT_EDITOR=vim
 export HISTSIZE=5000
@@ -27,7 +29,3 @@ export PYTHONUNBUFFERED=1
 export SVN_EDITOR=vim
 export VISUAL=${EDITOR}
 export WINDOWS=${WINDIR}/System32
-
-export WORKSPACE=${WORKSPACE:-/workspace}
-export DEVOPS=${DEVOPS:-~/workspace/devops}
-export ENVIRONMENT=${ENVIRONMENT:-${WORKSPACE}/dotfiles}
