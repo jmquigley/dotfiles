@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/bash
 
 #
 # A dotfile configuration for all development environments.  This
@@ -8,7 +8,9 @@
 printf "Linking startup environment from '%s'\n" ${HOME}
 
 # Retrieve the powerlevel theme
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+if [[ ! -d ~/.oh-my-zsh/custom/themes/powerlevel10k ]]; then
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+fi
 
 while read LINE; do
     IFS=' '
@@ -38,10 +40,11 @@ if [ -d ~/.oh-my-zsh ]; then
 fi
 
 # Setup custom less command
-sh ${PWD}/bin/build-less.sh
+${PWD}/bin/build-less.sh
 
 # setup conda environment
-. ~/.bashrc
-conda env create -f ${PWD}/conf/conda-environment.yml
+if [[ ! -d /opt/conda/envs/py3 ]]; then
+   conda env create -f ${PWD}/conf/conda-environment.yml
+fi
 
 printf "\n"
