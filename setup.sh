@@ -25,8 +25,16 @@ if [ ! -d ${HOME}/.vim ]; then
     ln -vs ${PWD}/.vim ${HOME}/.vim
 fi
 
+if [ -d ~/.oh-my-zsh ]; then
+    if [ -f ~/.oh-my-zsh/themes/agnoster.zsh-theme ]; then
+        rm -f ~/.oh-my-zsh/themes/agnoster.zsh-theme
+    fi
+
+    ln -s ${PWD}/conf/agnoster.zsh-theme ${HOME}/.oh-my-zsh/themes/agnoster.zsh-theme
+fi
+
 # setup conda environment
-# . ~/.bashrc
+. ~/.bashrc
 conda env create -f ${PWD}/conf/conda-environment.yml
 
 printf "\n"
