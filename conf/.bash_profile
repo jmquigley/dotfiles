@@ -21,6 +21,7 @@ export LC_ALL=en_US.UTF-8
 export NODE_MODULES=`realpath ~/.node_modules`
 export NODE_OPTIONS=--max-old-space-size=8192
 export OPER=/usr/local/oper
+export PAGER=most
 export PROMPT_COMMAND='history -a'
 export PNPM_HOME=`realpath ~/.local/share/pnpm`
 export PYENV_ROOT=`realpath ~/.pyenv`
@@ -43,10 +44,6 @@ if [[ ${OSTYPE} =~ "darwin" ]]; then
     export RDT_VER="2.5.2_0"
 	export REACT_DEV_TOOL="${CHROME_EXT}/${RDT_ID}/${RDT_VER}"
     export COLOR=
-
-    if command_exists vimpager; then
-        export PAGER=`command -v vimpager`
-    fi
 
     alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
     alias loadavg='sysctl -n vm.loadavg'

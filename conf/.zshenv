@@ -20,6 +20,7 @@ export NODE_MODULES=`realpath ~/.node_modules`
 export NODE_OPTIONS=--max-old-space-size=8192
 export NVM_HOME=`realpath ~/.nvm`
 export OPER=/usr/local/oper
+export PAGER=most
 export PNPM_HOME=`realpath ~/.local/share/pnpm`
 export PYENV_ROOT=`realpath ~/.pyenv`
 export PYTHONUNBUFFERED=1
