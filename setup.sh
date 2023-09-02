@@ -25,6 +25,7 @@ if [ ! -d ${HOME}/.vim ]; then
     ln -vs ${PWD}/.vim ${HOME}/.vim
 fi
 
+# Install custom theme for zsh
 if [ -d ~/.oh-my-zsh ]; then
     if [ -f ~/.oh-my-zsh/themes/agnoster.zsh-theme ]; then
         rm -f ~/.oh-my-zsh/themes/agnoster.zsh-theme
@@ -32,6 +33,9 @@ if [ -d ~/.oh-my-zsh ]; then
 
     ln -s ${PWD}/conf/agnoster.zsh-theme ${HOME}/.oh-my-zsh/themes/agnoster.zsh-theme
 fi
+
+# Setup custom less command
+sh ${PWD}/conf/less.sh
 
 # setup conda environment
 . ~/.bashrc
