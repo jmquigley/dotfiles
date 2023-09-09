@@ -42,9 +42,13 @@ fi
 # Setup custom less command
 ${PWD}/bin/build-less.sh
 
-# setup conda environment
-if [[ ! -d /opt/conda/envs/py3 ]]; then
-   conda env create -f ${PWD}/conf/conda-environment.yml
+# setup conda environment if it exists
+if [ command -v conda &> /dev/null ]; then
+    if [[ ! -d /opt/conda/envs/py3 ]]; then
+        conda env create -f ${PWD}/conf/conda-environment.yml
+    fi
+else
+    echo "conda not found, so no installation of conda environment"
 fi
 
 printf "\n"

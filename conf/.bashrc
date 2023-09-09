@@ -28,7 +28,7 @@ export PS1='\t \[\e[30;43m\]['${APP}']\[\e[m\] \[\e[34;47m\]\u\[\e[m\]@\[\e[37;4
 [ -s "$NVM_HOME/nvm.sh" ] && \. "$NVM_HOME/nvm.sh"  # This loads nvm
 [ -s "$NVM_HOME/bash_completion" ] && \. "$NVM_HOME/bash_completion"  # This loads nvm bash_completion
 
-
+if [ -d "/opt/conda" ]; then
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/opt/conda/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
@@ -45,3 +45,4 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 conda activate py3
+fi

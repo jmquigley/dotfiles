@@ -44,15 +44,10 @@ DIR_WO_STICKY=Ex
 [ -f ~/.env ] && . ~/.env
 [ -f ~/.functions ] && . ~/.functions
 
-# if command -v pyenv 1>/dev/null 2>&1; then
-#     export VIRTUAL_ENV_DISABLE_PROMPT=1
-#     eval "$(pyenv init -)"
-#     eval "$(pyenv virtualenv-init -)"
-# fi
-
 [ -s "$NVM_HOME/nvm.sh" ] && \. "$NVM_HOME/nvm.sh"  # This loads nvm
 [ -s "$NVM_HOME/bash_completion" ] && \. "$NVM_HOME/bash_completion"  # This loads nvm bash_completion
 
+if [ -d "/opt/conda" ]; then
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/opt/conda/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
@@ -69,6 +64,7 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 conda activate py3
+fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
