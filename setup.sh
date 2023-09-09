@@ -43,7 +43,7 @@ fi
 ${PWD}/bin/build-less.sh
 
 # setup conda environment if it exists
-if [ command -v conda &> /dev/null ]; then
+if command -v conda &> /dev/null; then
     if [[ ! -d /opt/conda/envs/py3 ]]; then
         conda env create -f ${PWD}/conf/conda-environment.yml
     fi
