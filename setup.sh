@@ -42,8 +42,25 @@ fi
 # Setup custom less command
 ${PWD}/bin/build-less.sh
 
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/conda/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/conda/etc/profile.d/conda.sh" ]; then
+        . "/opt/conda/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/conda/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
 # setup conda environment if it exists
 if command -v conda &> /dev/null; then
+    conda update conda -y
+
     if [[ ! -d /opt/conda/envs/py3 ]]; then
         conda env create -f ${PWD}/conf/conda-environment.yml
     fi
