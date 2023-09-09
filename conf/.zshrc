@@ -47,10 +47,7 @@ DIR_WO_STICKY=Ex
 [ -s "$NVM_HOME/nvm.sh" ] && \. "$NVM_HOME/nvm.sh"  # This loads nvm
 [ -s "$NVM_HOME/bash_completion" ] && \. "$NVM_HOME/bash_completion"  # This loads nvm bash_completion
 
-conda_setup
-if [[ -d ${CONDA_HOME}/envs/py3 ]]; then
-    conda activate py3
-fi
+conda_setup py3
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

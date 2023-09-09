@@ -69,7 +69,13 @@ function command_exists() {
 }
 
 function conda_setup() {
-	. ${CONDA_HOME}/etc/profile.d/conda.sh
+	if [ -d ${CONDA_HOME} ] && [ -f ${CONDA_HOME}/etc/profile.d/conda.sh ]; then
+		. ${CONDA_HOME}/etc/profile.d/conda.sh
+
+		if [ -d ${CONDA_HOME}/envs/$1 ]; then
+	    	conda activate $1
+		fi
+	fi
 }
 
 function conf() {

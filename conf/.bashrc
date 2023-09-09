@@ -28,7 +28,4 @@ export PS1='\t \[\e[30;43m\]['${APP}']\[\e[m\] \[\e[34;47m\]\u\[\e[m\]@\[\e[37;4
 [ -s "$NVM_HOME/nvm.sh" ] && \. "$NVM_HOME/nvm.sh"  # This loads nvm
 [ -s "$NVM_HOME/bash_completion" ] && \. "$NVM_HOME/bash_completion"  # This loads nvm bash_completion
 
-conda_setup
-if [[ -d ${CONDA_HOME}/envs/py3 ]]; then
-    conda activate py3
-fi
+conda_setup py3
