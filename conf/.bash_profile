@@ -21,7 +21,7 @@ export JAVA_HOME=/usr/local/share/java
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export NODE_MODULES=`realpath ~/.node_modules`
-export NODE_OPTIONS=--max-old-space-size=8192
+export NODE_OPTIONS='--max-old-space-size=8192 --experimental-vm-modules'
 export OPER=/usr/local/oper
 export PAGER=most
 export PROMPT_COMMAND='history -a'
