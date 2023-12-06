@@ -2,8 +2,6 @@ function not-exist { -not (Test-Path $args) }
 Set-Alias !exist not-exist -Option "Constant, AllScope"
 Set-Alias exist Test-Path -Option "Constant, AllScope"
 
-Function GoTo-Workspace {cd "X:/thirteensystems/scriblet"}
-
 Function Publish {
     npm version patch
     npm publish

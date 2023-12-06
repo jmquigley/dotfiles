@@ -6,8 +6,9 @@ export WORKSPACE=${WORKSPACE:-/workspace}
 
 export APPZ=/usr/local/apps
 export ARCHFLAGS="-arch x86_64"
+export BROWSER=
 export CATALINA_HOME=/usr/local/share/tomcat
-export COMPANY=${COMPANY:-thirteensystems}
+export COMPANY=${COMPANY:-ts}
 export CONDA_HOME=/opt/conda
 export PROJECT=${PROJECT:-mes}
 export CONTEXT=${CONTEXT:-${COMPANY}/${PROJECT}}
