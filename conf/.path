@@ -18,6 +18,7 @@ export BASEPATH=${BASEPATH}:/usr/bin
 export BASEPATH=${BASEPATH}:/sbin
 export BASEPATH=${BASEPATH}:/bin
 export BASEPATH=${BASEPATH}:/opt/X11/bin
+export BASEPATH=${BASEPATH}:/opt/mssql-tools/bin
 
 export PATH=${BASEPATH}
 
