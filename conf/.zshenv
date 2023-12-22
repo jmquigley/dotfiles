@@ -1,4 +1,5 @@
-export WORKSPACE=${WORKSPACE:-/workspace}
+export WORKSPACE_ROOT=${WORKSPACE_ROOT:-/workspace}
+export WORKSPACE=${WORKSPACE_ROOT}
 
 export APPZ=/usr/local/apps
 export ARCHFLAGS="-arch x86_64"
