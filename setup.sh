@@ -21,6 +21,12 @@ while read LINE; do
     [ -f ${SRC} ] && eval "ln -fvs ${SRC} ${DST}"
 done < ./conf/startup.list
 
+# link the powershell startup file
+if [ ! -d ${HOME}/.config/powershell ]; then
+    mkdir -p ${HOME}/.config/powershell
+    ln -vs ${PWD}/conf/powershell/profile.ps1 ${HOME}/.config/powershell/profile.ps1
+fi
+
 if [ ! -d ${HOME}/bin ]; then
     ln -vs ${PWD}/bin ${HOME}/bin
     chmod -R 755 ${PWD}/bin
