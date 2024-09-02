@@ -67,3 +67,4 @@ modules
 *.d.ts
 !manual
 !docs/**/*.js
+condaenv.*

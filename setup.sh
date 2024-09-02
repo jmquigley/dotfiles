@@ -48,6 +48,9 @@ fi
 # Setup custom less command
 ${PWD}/bin/build-less.sh
 
+# Setup custom cmake command
+${PWD}/bin/build-cmake.sh
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/opt/conda/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
