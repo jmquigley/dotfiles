@@ -7,6 +7,26 @@
 
 printf "Linking startup environment from '%s'\n" ${HOME}
 
+
+function usage() {
+    echo "Usage: $0 [--no-less] [--no-cmake]"
+    echo "  --no-less                Turn off the custom less build"
+    echo "  --no-cmake               Turn off the custom cmake build"
+    echo ""
+    echo "Example: $0 --no-less --no-cmake"
+    exit 1
+}
+
+# parse params
+NO_LESS=0
+NO_CMAKE=0
+
+while [[ "$#" > 0 ]]; do case $1 in
+  --no-less) NO_LESS=1; shift;;
+  --no-cmake) NO_CMAKE=1;shift;shift;;
+  *) usage "Unknown parameter passed: $1"; shift; shift;;
+esac; done
+
 # Retrieve the powerlevel theme
 if [[ ! -d ~/.oh-my-zsh/custom/themes/powerlevel10k ]]; then
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
@@ -46,10 +66,14 @@ if [ -d ~/.oh-my-zsh ]; then
 fi
 
 # Setup custom less command
-${PWD}/bin/build-less.sh
+if [ ${NO_LESS} -eq 0 ]; then
+    ${PWD}/bin/build-less.sh
+fi
 
 # Setup custom cmake command
-${PWD}/bin/build-cmake.sh
+if [ ${NO_CMAKE} -eq 0 ]; then
+    ${PWD}/bin/build-cmake.sh
+fi
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
