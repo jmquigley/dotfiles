@@ -7,7 +7,6 @@
 
 printf "Linking startup environment from '%s'\n" ${HOME}
 
-
 function usage() {
     echo "Usage: $0 [--no-less] [--no-cmake]"
     echo "  --no-less                Turn off the custom less build"
@@ -17,14 +16,15 @@ function usage() {
     exit 1
 }
 
-# parse params
+# simple flags to turn off the custom less and cmake builds
 NO_LESS=0
 NO_CMAKE=0
 
+# parse the command line arguments
 while [[ "$#" > 0 ]]; do case $1 in
   --no-less) NO_LESS=1; shift;;
-  --no-cmake) NO_CMAKE=1;shift;shift;;
-  *) usage "Unknown parameter passed: $1"; shift; shift;;
+  --no-cmake) NO_CMAKE=1;shift;;
+  *) usage "Unknown parameter passed: $1"; shift;;
 esac; done
 
 # Retrieve the powerlevel theme
