@@ -68,3 +68,4 @@ modules
 !manual
 !docs/**/*.js
 condaenv.*
+tmp/

@@ -1,16 +1,44 @@
 {
-	// Use IntelliSense to learn about possible attributes.
-	// Hover to view descriptions of existing attributes.
-	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-	"version": "0.2.0",
-	"configurations": [
-		{
-			"type": "bashdb",
-			"request": "launch",
-			"name": "Save Conda Environnent",
-			"cwd": "${workspaceFolder}",
-			"program": "${workspaceFolder}/bin/save-conda-env.sh",
-			"terminalKind": "integrated"
-		}
-	]
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Save Conda Environnent",
+            "cwd": "${workspaceFolder}",
+            "program": "${workspaceFolder}/bin/save-conda-env.sh"
+        },
+        {
+            "name": "Container: Base (clean)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/dfconfig.py",
+            "args": [
+                "--directory", "${workspaceFolder}/tmp",
+                "--name", "base",
+                "--lang", "py",
+                "-r"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "name": "Container: Base (existing)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/dfconfig.py",
+            "args": [
+                "--directory", "${workspaceFolder}/tmp",
+                "--name", "base",
+                "--lang", "py"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
 }

@@ -72,7 +72,7 @@ fi
 
 # Setup custom cmake command
 if [ ${NO_CMAKE} -eq 0 ]; then
-    ${PWD}/bin/build-cmake.sh
+    ${PWD}/bin/build-cmake.sh --binary
 fi
 
 # >>> conda initialize >>>

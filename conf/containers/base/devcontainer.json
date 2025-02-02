@@ -1,0 +1,89 @@
+{
+  "name": "base",
+
+  // "build": { "dockerfile": "Dockerfile" },
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "devcontainer",
+
+  "features": {
+    "ghcr.io/devcontainers/features/conda:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/powershell:1": {
+      "version": "latest"
+    }
+  },
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+          "ms-vscode.cpptools",
+          "ms-vscode.cpptools-extension-pack",
+          "ms-vscode.cpptools-themes",
+          "twxs.cmake",
+          "ms-vscode.cmake-tools",
+          "pdconsec.vscode-print",
+          "ms-vscode.hexeditor",
+          "joaompinto.vscode-graphviz",
+          "EditorConfig.EditorConfig",
+          "ms-vscode-remote.remote-ssh",
+          "ms-vscode.cpptools",
+          "ms-vscode.cpptools-extension-pack",
+          "yzane.markdown-pdf",
+          "ms-vscode.live-server",
+          "rioj7.vscode-json-validate",
+          "ecmel.vscode-html-css",
+          "joaompinto.vscode-graphviz",
+          "kaishuu0123.vscode-erd-preview",
+          "deibit.devdocs",
+          "kaiwood.center-editor-window",
+          "tberman.json-schema-validator",
+          "foxundermoon.shell-format",
+          "rogalmic.bash-debug",
+          "ms-vscode.makefile-tools",
+          "mtxr.sqltools",
+          "GitHub.copilot",
+          "ms-azuretools.vscode-docker",
+          "ms-vscode.cpptools-themes",
+          "ms-vscode-remote.remote-containers",
+          "ms-vscode-remote.remote-ssh",
+          "SimonSiefke.svg-preview",
+          "ms-dotnettools.vscode-dotnet-runtime",
+          "ms-python.autopep8",
+          "aliariff.auto-add-brackets",
+          "streetsidesoftware.code-spell-checker",
+          "weakish.complete-statement",
+          "ms-mssql.data-workspace-vscode",
+          "dbaeumer.vscode-eslint",
+          "ms-python.flake8",
+          "GitHub.copilot-chat",
+          "GitHub.copilot-labs",
+          "joaompinto.vscode-graphviz",
+          "VisualStudioExptTeam.vscodeintellicode",
+          "VisualStudioExptTeam.intellicode-api-usage-examples",
+          "Orta.vscode-jest",
+          "ZainChen.json",
+          "geddski.macros",
+          "yzhang.markdown-all-in-one",
+          "shd101wyy.markdown-preview-enhanced",
+          "DavidAnson.vscode-markdownlint",
+          "Jacano.vscode-pnpm",
+          "ms-vscode.powershell",
+          "searKing.preview-vscode",
+          "ms-python.vscode-pylance",
+          "ms-python.python",
+          "donjayamanne.python-environment-manager",
+          "mechatroner.rainbow-csv",
+          "trond-snekvik.simple-rst",
+          "jmfirth.vsc-space-block-jumper",
+          "ms-mssql.sql-bindings-vscode",
+          "ms-mssql.sql-database-projects-vscode",
+          "ms-mssql.mssql",
+          "redhat.vscode-yaml",
+          "GitHub.codespaces",
+          "vscode-icons-team.vscode-icons"
+      ]
+    }
+  },
+  "postStartCommand": "/tmp/post-start.sh"
+}
