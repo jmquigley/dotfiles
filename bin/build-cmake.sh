@@ -4,7 +4,7 @@
 # This script builds CMake from source.  It's a long process
 #
 
-VERSION=3.31.0
+VERSION=3.31.5
 NJOBS=10
 
 pushd /tmp
