@@ -27,7 +27,7 @@ export NODE_OPTIONS='--max-old-space-size=8192 --experimental-vm-modules'
 export OPER=/usr/local/oper
 export PAGER=most
 export PROMPT_COMMAND='history -a'
-export PNPM_HOME=`[ -f ~/.local/share/pnpm ] && realpath ~/.local/share/pnpm`
+export PNPM_HOME=`[ -e ~/.local/share/pnpm ] && realpath ~/.local/share/pnpm`
 export PYENV_ROOT=`realpath ~/.pyenv`
 export PYTHONUNBUFFERED=1
 export SVN_EDITOR=vim
