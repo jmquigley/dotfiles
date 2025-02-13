@@ -25,7 +25,7 @@ export NODE_OPTIONS='--max-old-space-size=8192 --experimental-vm-modules'
 export NVM_HOME=`realpath ~/.nvm`
 export OPER=/usr/local/oper
 export PAGER=most
-export PNPM_HOME=`realpath ~/.local/share/pnpm`
+export PNPM_HOME=`[ -e ~/.local/share/pnpm ] && realpath ~/.local/share/pnpm`
 export PYENV_ROOT=`realpath ~/.pyenv`
 export PYTHONUNBUFFERED=1
 export SVN_EDITOR=vim

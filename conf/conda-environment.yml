@@ -1,21 +1,30 @@
 name: py3
 channels:
   - defaults
+  - https://repo.anaconda.com/pkgs/main
+  - https://repo.anaconda.com/pkgs/r
 dependencies:
-  - bzip2=1.0.8=h2bbff1b_6
-  - ca-certificates=2024.12.31=haa95532_0
-  - libffi=3.4.4=hd77b12b_1
-  - openssl=3.0.15=h827c3e9_0
-  - pip=25.0=py311haa95532_0
-  - python=3.11.11=h4607a30_0
-  - setuptools=75.8.0=py311haa95532_0
-  - sqlite=3.45.3=h2bbff1b_0
-  - tk=8.6.14=h0416ee5_0
-  - vc=14.42=haa95532_4
-  - vs2015_runtime=14.42.34433=he0abc0d_4
-  - wheel=0.45.1=py311haa95532_0
-  - xz=5.4.6=h8cc25b3_1
-  - zlib=1.2.13=h8cc25b3_1
+  - _libgcc_mutex=0.1=main
+  - _openmp_mutex=5.1=1_gnu
+  - bzip2=1.0.8=h5eee18b_6
+  - ca-certificates=2024.12.31=h06a4308_0
+  - ld_impl_linux-64=2.40=h12ee557_0
+  - libffi=3.4.4=h6a678d5_1
+  - libgcc-ng=11.2.0=h1234567_1
+  - libgomp=11.2.0=h1234567_1
+  - libstdcxx-ng=11.2.0=h1234567_1
+  - libuuid=1.41.5=h5eee18b_0
+  - ncurses=6.4=h6a678d5_0
+  - openssl=3.0.15=h5eee18b_0
+  - pip=25.0=py311h06a4308_0
+  - python=3.11.11=he870216_0
+  - readline=8.2=h5eee18b_0
+  - setuptools=75.8.0=py311h06a4308_0
+  - sqlite=3.45.3=h5eee18b_0
+  - tk=8.6.14=h39e8969_0
+  - wheel=0.45.1=py311h06a4308_0
+  - xz=5.6.4=h5eee18b_1
+  - zlib=1.2.13=h5eee18b_1
   - pip:
       - alabaster==1.0.0
       - alembic==1.14.1
@@ -26,7 +35,6 @@ dependencies:
       - cffi==1.17.1
       - charset-normalizer==3.4.1
       - cloudpickle==3.1.1
-      - colorama==0.4.6
       - commonmark==0.9.1
       - coverage==7.6.12
       - cryptography==44.0.1
@@ -101,4 +109,4 @@ dependencies:
       - virtualenv==20.29.2
       - wrapt==1.17.2
       - zipp==3.21.0
-prefix: C:\Users\jquigley.ITWTEKFAST\AppData\Local\miniconda3\envs\py3
+prefix: /opt/conda/envs/py3
