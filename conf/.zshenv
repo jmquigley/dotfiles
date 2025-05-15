@@ -26,6 +26,7 @@ export NVM_HOME=`realpath ~/.nvm`
 export OPER=/usr/local/oper
 export PAGER=most
 export PNPM_HOME=`[ -e ~/.local/share/pnpm ] && realpath ~/.local/share/pnpm`
+export PROJECT_ROOT=${WORKSPACE_ROOT}/${PROJECT}
 export PYENV_ROOT=`realpath ~/.pyenv`
 export PYTHONUNBUFFERED=1
 export SVN_EDITOR=vim
