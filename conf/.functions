@@ -449,7 +449,8 @@ function t2() {
 }
 
 function tags() {
-	build-ctags.sh
+	#build-ctags.sh
+    build-etags.sh
 }
 
 function todo() {
