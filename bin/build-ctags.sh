@@ -40,12 +40,22 @@ fi
 make_ctags
 
 pushd ${DIR}
+DIRS=(`realpath ${DIR}` /usr/include)
+
+if [ -f ~/.srcpath ]; then
+    while read F; do
+        echo "F=$F"
+        DIRS+=($F)
+    done < ~/.srcpath
+fi
+
+echo ${DIRS[*]}
 
 DIR_IGNORE='
--path ./.devcontainer -o
--path ./.git -o
--path ./.tox -o
--path ./.vscode -o
+-path *.devcontainer -o
+-path *.git -o
+-path *.tox -o
+-path *.vscode -o
 -path ./docs -o
 -path ./build -o
 -path ./coverage -o
@@ -67,14 +77,16 @@ FILE_INCLUDE='
 -iname '*.jsx'
 '
 
+OUTFILE=/tmp/ctags.flist
+[ -f ${OUTFILE} ] && rm ${OUTFILE}
 [ -f ~/.emacs.d/TAGS ] && rm ~/.emacs.d/TAGS
 
-OUTFILE=/tmp/ctags.flist
+for directory in ${DIRS[*]}; do
+    export CMD=`echo "find ${DIR} -type d \( ${DIR_IGNORE} \) -prune -o -type f \( ${FILE_IGNORE} \) -prune -o -type f \( ${FILE_INCLUDE} \) -print > ${OUTFILE}"`
+    echo ${CMD}
 
-export CMD=`echo "find ${DIR} -type d \( ${DIR_IGNORE} \) -prune -o -type f \( ${FILE_IGNORE} \) -prune -o -type f \( ${FILE_INCLUDE} \) -print > ${OUTFILE}"`
-echo ${CMD}
-
-find . -type d \( ${DIR_IGNORE} \) -prune -o -type f \( ${FILE_IGNORE} \) -prune -o -type f \( ${FILE_INCLUDE} \) -print > ${OUTFILE}
+    find ${directory} -type d \( ${DIR_IGNORE} \) -prune -o -type f \( ${FILE_IGNORE} \) -prune -o -type f \( ${FILE_INCLUDE} \) -print >> ${OUTFILE}
+done
 
 /usr/local/bin/ctags -o ~/.emacs.d/TAGS -a -e -L ${OUTFILE}
 
