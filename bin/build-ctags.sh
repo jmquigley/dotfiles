@@ -3,8 +3,27 @@
 #
 # Builds a database of ctags from the current project repository
 #
-# http://ctags.sourceforge.net/ctags.html
 #
+
+make_ctags() {
+    if [[ ! -f /usr/local/bin/ctags ]]; then
+        pushd /tmp
+        VERSION=6.1.0
+
+        if [[ ! -d universal-ctags-${VERSION} ]]; then
+            wget https://github.com/universal-ctags/ctags/releases/download/v${VERSION}/universal-ctags-${VERSION}.tar.gz
+            tar -xzf universal-ctags-${VERSION}.tar.gz
+        fi
+
+        cd universal-ctags-${VERSION}
+        ./configure --prefix=/usr/local
+        make
+        make install
+        update-alternatives --install /usr/bin/ctags ctags /usr/local/bin/ctags 1
+
+        popd
+    fi
+}
 
 if [ "${1}" == "" ]; then
 	printf "Usage: build-ctags.sh {path}\n"
@@ -18,15 +37,19 @@ if [ ! -d ${DIR} ]; then
 	exit 127
 fi
 
+make_ctags
+
+pushd ${DIR}
+
 DIR_IGNORE='
--path .devcontainer -o
--path .git -o
--path .tox -o
--path .vscode -o
--path *docs -o
--path *build -o
--path *coverage -o
--path *dist -o
+-path ./.devcontainer -o
+-path ./.git -o
+-path ./.tox -o
+-path ./.vscode -o
+-path ./docs -o
+-path ./build -o
+-path ./coverage -o
+-path ./dist -o
 -path ./research -o
 -path ./sandbox
 '
@@ -47,6 +70,12 @@ FILE_INCLUDE='
 [ -f ~/.emacs.d/TAGS ] && rm ~/.emacs.d/TAGS
 
 OUTFILE=/tmp/ctags.flist
-find ${DIR} -type d \( ${DIR_IGNORE} \) -prune -o -type f \( ${FILE_IGNORE} \) -prune -o -type f \( ${FILE_INCLUDE} \) -print > ${OUTFILE}
-ctags -o ~/.emacs.d/TAGS -a -e -L ${OUTFILE}
-rm -f ${OUTFILE}
+
+export CMD=`echo "find ${DIR} -type d \( ${DIR_IGNORE} \) -prune -o -type f \( ${FILE_IGNORE} \) -prune -o -type f \( ${FILE_INCLUDE} \) -print > ${OUTFILE}"`
+echo ${CMD}
+
+find . -type d \( ${DIR_IGNORE} \) -prune -o -type f \( ${FILE_IGNORE} \) -prune -o -type f \( ${FILE_INCLUDE} \) -print > ${OUTFILE}
+
+/usr/local/bin/ctags -o ~/.emacs.d/TAGS -a -e -L ${OUTFILE}
+
+popd

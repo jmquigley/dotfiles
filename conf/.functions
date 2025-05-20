@@ -449,7 +449,7 @@ function t2() {
 }
 
 function tags() {
-	build-ctags.sh
+	build-ctags.sh `pwd`
 }
 
 function todo() {
