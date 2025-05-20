@@ -7,4 +7,6 @@
 TAGFILE=`realpath ~/.emacs.d/TAGS`
 echo "creating tags in ${TAGFILE}"
 
+[ -f ${TAGFILE} ] && rm ${TAGFILE}
+
 find . -name "*.cpp" -print -or -name "*.h" -print | xargs etags --append --output=${TAGFILE}
