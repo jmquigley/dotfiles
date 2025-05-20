@@ -19,9 +19,13 @@ if [ ! -d ${DIR} ]; then
 fi
 
 DIR_IGNORE='
+-path .devcontainer -o
+-path .git -o
+-path .tox -o
+-path .vscode -o
 -path *docs -o
--path *coverage -o
 -path *build -o
+-path *coverage -o
 -path *dist -o
 -path ./research -o
 -path ./sandbox
@@ -32,6 +36,8 @@ FILE_IGNORE='
 '
 
 FILE_INCLUDE='
+-iname '*.cpp' -o
+-iname '*.h' -o
 -iname '*.ts' -o
 -iname '*.tsx' -o
 -iname '*.js' -o
