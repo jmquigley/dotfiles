@@ -46,6 +46,10 @@ function build() {
 	fi
 }
 
+function build-tags() {
+	build-ctags.sh `pwd`
+}
+
 function c() {
 	cd ${WORKSPACE}/${PROJECT}
 }
@@ -446,10 +450,6 @@ function t2() {
     tmux -2l set-option history-limit 10000
 	tmux -2l split-window -h
     tmux -2l attach-session -t "${SESSION}"
-}
-
-function tags() {
-	build-ctags.sh `pwd`
 }
 
 function todo() {
