@@ -70,7 +70,10 @@ FILE_IGNORE='
 
 FILE_INCLUDE='
 -iname '*.cpp' -o
+-iname '*.cxx' -o
+-iname '*.c' -o
 -iname '*.h' -o
+-iname '*.hpp' -o
 -iname '*.ts' -o
 -iname '*.tsx' -o
 -iname '*.js' -o
