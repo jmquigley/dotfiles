@@ -32,3 +32,5 @@ export PYTHONUNBUFFERED=1
 export SVN_EDITOR=vim
 export VISUAL=${EDITOR}
 export WINDOWS=${WINDIR}/System32
+
+[ -f ~/.custom ] && . ~/.custom
